@@ -23,8 +23,12 @@
     "preact-cli": "^2.0.0"
   },
   "dependencies": {
+    "boostly-ui": "^1.4.0",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.11.0",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.5"
+    "preact-router": "^2.5.5",
+    "react-modal": "^3.1.2"
   }
 }
