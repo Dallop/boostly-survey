@@ -4,7 +4,6 @@ import { Div } from 'glamorous/preact';
 
 import Home from '../routes/home';
 import Profile from '../routes/profile';
-import Google from '../routes/google';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 // import Google from 'async!../routes/google';
@@ -29,7 +28,6 @@ export default class App extends Component {
 			>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
-					<Google path="/google_review" />
 					<Profile path="/profile/" user="me" />
 					<Profile path="/profile/:user" />
 				</Router>
