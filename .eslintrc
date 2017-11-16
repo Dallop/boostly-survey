@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "jsx-no-bind": "off"
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}
