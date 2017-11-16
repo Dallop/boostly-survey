@@ -8,7 +8,7 @@ import React from 'create-react-class';
 import { route } from 'preact-router';
 import Media from 'react-media';
 
-const renderBoxes = (screenWidth, onClick) => {
+const renderBoxes = (onClick) => {
     const Col = G.div({
         display: 'flex',
         flexDirection: 'column',
@@ -116,7 +116,10 @@ class Home extends Component {
             justifyContent: 'center',
             alignItems: 'center',
         });
-        const queryParams = Query.parse(window.location.search);
+        let queryParams = {};
+        if (typeof window !== 'undefined') {
+            queryParams = Query.parse(window.location.search)
+        }
         const onClick = this.handleBoxClick(queryParams);
         const SmallContainer = G(Container)({ maxWidth: 400 });
         if (this.state.reviewMetadata) {
@@ -124,7 +127,9 @@ class Home extends Component {
                 <SmallContainer>
                     <Button
                         onClick={() => {
-                            window.location.href = this.state.reviewMetadata.url;
+                            if (typeof window !== 'undefined') {
+                                window.location.href = this.state.reviewMetadata.url;
+                            }
                         }}>
                         Review us on Google
                     </Button>
@@ -148,7 +153,7 @@ class Home extends Component {
         return (
             <Container>
                 <Text>How would you rate us?</Text>
-                {renderBoxes(window.screen.width, onClick)}
+                {renderBoxes(onClick)}
             </Container>
         );
     }

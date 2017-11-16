@@ -27,7 +27,6 @@
     "glamor": "^2.20.40",
     "glamorous": "^4.11.0",
     "preact": "^8.2.1",
-    "preact-compat": "^3.17.0",
     "preact-router": "^2.5.5",
     "query-string": "^5.0.1",
     "react-media": "^1.6.1",
