@@ -3,13 +3,18 @@
     "jsx-no-bind": "off",
     "no-unused-vars": "error",
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "no-undef": "error"
   },
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
+  },
+  "env": {
+    "browser": true,
+    "node": true
   },
   "plugins": ["react"]
 }

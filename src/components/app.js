@@ -1,5 +1,5 @@
+// eslint-disable-next-line
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
 import { Div } from 'glamorous/preact';
 
 import Home from '../routes/home';
@@ -10,9 +10,9 @@ export default class App extends Component {
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
-	handleRoute = e => {
+    handleRoute (e) {
 		this.currentUrl = e.url;
-	};
+    }
 
 	render() {
 		return (
@@ -22,9 +22,7 @@ export default class App extends Component {
 				alignItems="center"
 				id="app"
 			>
-				<Router onChange={this.handleRoute}>
-					<Home default />
-				</Router>
+                <Home />
 			</Div>
 		);
 	}

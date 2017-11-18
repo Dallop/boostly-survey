@@ -4,9 +4,22 @@ import G from 'glamorous/preact';
 import { Textarea, Button, Text } from 'boostly-ui';
 import Query from 'query-string';
 import Media from 'react-media';
+import { media } from '../../settings'
+import { reviewApi, env } from '../../config'
 
 const postFeedback = (orderId, reviewScore, feedbackText) => {
-    console.log(orderId, reviewScore, feedbackText)
+    fetch(reviewApi, {
+        method: 'POST',
+        body: JSON.stringify({
+            reviewScore,
+            feedbackText
+        })
+    })
+    .catch(err => {
+        if (env === 'development') {
+            console.log(err)
+        }
+    })
 }
 
 const renderBoxes = onClick => {
