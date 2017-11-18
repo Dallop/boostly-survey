@@ -2462,6 +2462,15 @@ eslint-plugin-react@^7.0.0:
     jsx-ast-utils "^2.0.0"
     prop-types "^15.5.10"
 
+eslint-plugin-react@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.5.0.tgz#84cd4a45f179930268379e1f8fc17aedcfadd357"
+  dependencies:
+    doctrine "^2.0.0"
+    has "^1.0.1"
+    jsx-ast-utils "^2.0.0"
+    prop-types "^15.6.0"
+
 eslint-scope@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"

@@ -3,7 +3,6 @@ import { Router } from 'preact-router';
 import { Div } from 'glamorous/preact';
 
 import Home from '../routes/home';
-// import Home from 'async!../routes/home';
 
 export default class App extends Component {
 

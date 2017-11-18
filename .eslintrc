@@ -1,11 +1,15 @@
 {
   "rules": {
-    "jsx-no-bind": "off"
+    "jsx-no-bind": "off",
+    "no-unused-vars": "error",
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1
   },
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-  }
+  },
+  "plugins": ["react"]
 }

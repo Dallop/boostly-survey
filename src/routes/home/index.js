@@ -1,14 +1,15 @@
 import { Component } from 'preact';
 import RatingBox from '../../components/RatingBox';
-import G, { A } from 'glamorous/preact';
-import { media, colors } from '../../settings';
+import G from 'glamorous/preact';
 import { Textarea, Button, Text } from 'boostly-ui';
 import Query from 'query-string';
-import React from 'create-react-class';
-import { route } from 'preact-router';
 import Media from 'react-media';
 
-const renderBoxes = (onClick) => {
+const postFeedback = (orderId, reviewScore, feedbackText) => {
+    console.log(orderId, reviewScore, feedbackText)
+}
+
+const renderBoxes = onClick => {
     const Col = G.div({
         display: 'flex',
         flexDirection: 'column',
@@ -30,9 +31,7 @@ const renderBoxes = (onClick) => {
                             {Array(5)
                                 .fill()
                                 .map((_, i) => (
-                                    <RatingBox
-                                        onClick={() => onClick(i)}
-                                    >
+                                    <RatingBox onClick={() => onClick(i)}>
                                         {i + 1}
                                     </RatingBox>
                                 ))}
@@ -42,9 +41,7 @@ const renderBoxes = (onClick) => {
                                 .fill()
                                 .map((_, i) => i + 5)
                                 .map(i => (
-                                    <RatingBox
-                                        onClick={() => onClick(i)}
-                                    >
+                                    <RatingBox onClick={() => onClick(i)}>
                                         {i + 1}
                                     </RatingBox>
                                 ))}
@@ -55,9 +52,7 @@ const renderBoxes = (onClick) => {
                         {Array(10)
                             .fill()
                             .map((_, i) => (
-                                <RatingBox
-                                    onClick={() => onClick(i)}
-                                >
+                                <RatingBox onClick={() => onClick(i)}>
                                     {i + 1}
                                 </RatingBox>
                             ))}
@@ -68,8 +63,18 @@ const renderBoxes = (onClick) => {
 };
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            feebackText: '',
+        };
+    }
+
     handleBoxClick(queryParams) {
         return boxIndex => {
+            this.setState({
+                reviewScore: boxIndex + 1
+            })
             const isGoodReview = boxIndex + 1 >= 9;
             const hasLeftReview = queryParams.hasLeftReview || false;
             if (isGoodReview && !hasLeftReview) {
@@ -118,11 +123,14 @@ class Home extends Component {
         });
         let queryParams = {};
         if (typeof window !== 'undefined') {
-            queryParams = Query.parse(window.location.search)
+            queryParams = Query.parse(window.location.search);
         }
-        const onClick = this.handleBoxClick(queryParams);
         const SmallContainer = G(Container)({ maxWidth: 400 });
-        if (this.state.reviewMetadata) {
+        if (this.state.completedFeedback) {
+            return (
+                <Text>Thank you for your feedback!</Text>
+            )
+        } else if (this.state.reviewMetadata) {
             return (
                 <SmallContainer>
                     <Button
@@ -137,19 +145,41 @@ class Home extends Component {
             );
         } else if (this.state.showFeedback) {
             const FeedbackContainer = G(Container)({
-                height: 256,
+                height: '80%',
+                maxHeight: 300,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-around',
+                maxWidth: 600,
             });
+            const onClick = () => {
+                //Need to get orderId from the URL, reviewScore from the state, and feedback text from the state
+                const { orderId } = typeof window !== 'undefined'
+                    ?  Query.parse(window.location.search)
+                    : {}
+                const { reviewScore, feedbackText } = this.state
+                postFeedback(orderId, reviewScore, feedbackText)
+                this.setState({
+                    feedbackText: '',
+                    completedFeedback: true
+                })
+            };
+            const onChange = (event) => {
+                this.state.feedbackText = event.target.value
+            }
             return (
                 <FeedbackContainer>
                     <Text>We'd love to have your feedback</Text>
-                    <Textarea height={128} />
-                    <Button>Submit</Button>
+                    <Textarea
+                        value={this.state.feedbackText}
+                        height={128}
+                        onChange={onChange}
+                    />
+                    <Button onClick={onClick}>Submit</Button>
                 </FeedbackContainer>
             );
         }
+        const onClick = this.handleBoxClick(queryParams);
         return (
             <Container>
                 <Text>How would you rate us?</Text>
