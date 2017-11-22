@@ -103,7 +103,7 @@ class Home extends Component {
       this.setState({
         rating: boxIndex + 1,
       });
-      const isGoodReview = boxIndex + 1 >= 9;
+      const isGoodReview = boxIndex >= 9;
       const hasLeftReview = queryParams.hasLeftReview || false;
       if (isGoodReview && !hasLeftReview) {
         this.handleExternalReview(queryParams);
