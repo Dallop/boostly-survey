@@ -131,9 +131,19 @@ class Home extends Component {
         this.setState({
           reviewMetadata: {
             url,
+            reviewType: 'Google'
           },
         });
       },
+      yelp: () => {
+        const url = `https://www.yelp.com/writeareview/biz/${placeId}`
+        this.setState({
+          reviewMetadata: {
+            url,
+            reviewType: 'Yelp'
+          },
+        });
+      }
     };
     const selectedAction = actionSelector[reviewType] || defaultAction;
     return selectedAction();
@@ -169,7 +179,7 @@ class Home extends Component {
                 window.location.href = this.state.reviewMetadata.url;
               }
             }}>
-                        Review us on Google
+            {`Review us on ${this.state.reviewMetadata.reviewType}`}
           </Button>
         </SmallContainer>
       );
