@@ -119,7 +119,7 @@ class Home extends Component {
     });
   }
 
-  handleExternalReview({ reviewType, placeId }) {
+  handleExternalReview({ reviewType, placeId, pageName }) {
     const defaultAction = () => {
       this.setState({
         showFeedback: true
@@ -141,6 +141,15 @@ class Home extends Component {
           reviewMetadata: {
             url,
             reviewType: 'Yelp'
+          },
+        });
+      },
+      facebook: () => {
+        const url = `https://www.facebook.com/${pageName}/reviews/`
+        this.setState({
+          reviewMetadata: {
+            url,
+            reviewType: 'Facebook'
           },
         });
       }
