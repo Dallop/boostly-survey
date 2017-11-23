@@ -122,9 +122,7 @@ class Home extends Component {
   handleExternalReview({ reviewType, placeId }) {
     const defaultAction = () => {
       this.setState({
-        reviewMetadata: {
-          url: 'https://trace.com',
-        },
+        showFeedback: true
       });
     };
     const actionSelector = {
@@ -157,6 +155,12 @@ class Home extends Component {
     if (this.state.completedFeedback) {
       return <Text>Thank you for your feedback!</Text>;
     } else if (this.state.reviewMetadata) {
+      const { orderId } =
+                    typeof window !== 'undefined'
+                      ? Query.parse(window.location.search)
+                      : {};
+      const { rating } = this.state;
+      postFeedback(orderId, rating, '');
       return (
         <SmallContainer>
           <Button
@@ -179,7 +183,6 @@ class Home extends Component {
         maxWidth: 600,
       });
       const onClick = () => {
-        //Need to get orderId from the URL, rating from the state, and feedback text from the state
         const { orderId } =
                     typeof window !== 'undefined'
                       ? Query.parse(window.location.search)
