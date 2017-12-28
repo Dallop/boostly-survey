@@ -188,11 +188,14 @@ class Home extends Component {
       queryParams = Query.parse(window.location.search);
     }
     if (this.state.completedFeedback) {
+      const CenterText = G(Text)({
+        textAlign: 'center'
+      })
       return (
-        <Text>
+        <CenterText>
                     Thanks for your feedback. Please explain why you gave that
                     rating.
-        </Text>
+        </CenterText>
       );
     } else if (this.state.reviewMetadata) {
       const { orderId } =
