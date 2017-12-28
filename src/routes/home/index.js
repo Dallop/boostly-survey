@@ -163,19 +163,21 @@ class Home extends Component {
     const Container = G.div({
       display: 'flex',
       justifyContent: 'space-between',
-      width: '100%'
+      width: '100%',
+      padding: '0px 5px'
+
     })
     return (
       <Container>
-        <Text>Least</Text>
-        <Text>Greatest</Text>
+        <Text>Least Likely</Text>
+        <Text>Most Likely</Text>
       </Container>
     )
   }
 
   render() {
     const Container = G.div({
-      maxWidth: '800px',
+      maxWidth: '880px',
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
