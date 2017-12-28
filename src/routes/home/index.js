@@ -193,8 +193,7 @@ class Home extends Component {
       })
       return (
         <CenterText>
-                    Thanks for your feedback. Please explain why you gave that
-                    rating.
+                    Thank you for your feedback!
         </CenterText>
       );
     } else if (this.state.reviewMetadata) {
@@ -232,9 +231,13 @@ class Home extends Component {
       const onChange = event => {
         this.state.feedbackText = event.target.value;
       };
+      const CenterText = G(Text)({ textAlign: 'center' })
       return (
         <FeedbackContainer>
-          <Text>We'd love to have your feedback</Text>
+          <CenterText>
+                    Thanks for your feedback. Please explain why you gave that
+                    rating.
+          </CenterText>
           <Textarea
             value={this.state.feedbackText}
             height={128}
