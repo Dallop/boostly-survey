@@ -164,15 +164,14 @@ class Home extends Component {
       display: 'flex',
       justifyContent: 'space-between',
       width: '100%',
-      padding: '0px 5px'
-
-    })
+      padding: '0px 5px',
+    });
     return (
       <Container>
         <Text>Least Likely</Text>
         <Text>Most Likely</Text>
       </Container>
-    )
+    );
   }
 
   render() {
@@ -189,7 +188,12 @@ class Home extends Component {
       queryParams = Query.parse(window.location.search);
     }
     if (this.state.completedFeedback) {
-      return <Text>Thank you for your feedback!</Text>;
+      return (
+        <Text>
+                    Thanks for your feedback. Please explain why you gave that
+                    rating.
+        </Text>
+      );
     } else if (this.state.reviewMetadata) {
       const { orderId } =
                 typeof window !== 'undefined'
@@ -239,8 +243,8 @@ class Home extends Component {
     }
     const onClick = this.handleBoxClick(queryParams);
     const CenterText = G(Text)({
-      textAlign: 'center'
-    })
+      textAlign: 'center',
+    });
     return (
       <Container>
         <CenterText>
